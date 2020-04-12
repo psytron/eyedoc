@@ -1,0 +1,16 @@
+[Unit]
+Description=eyedoc service
+After=network.target
+
+[Service]
+Environment="PYTHONUNBUFFERED=TRUE"
+User=root
+Group=www-data
+WorkingDirectory=./home/
+ExecStart=/home/eyedoc
+Restart=always
+StandardOutput=syslog+console
+StandardError=syslog+console
+
+[Install]
+WantedBy=multi-user.target

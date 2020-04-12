@@ -1,0 +1,17 @@
+[Unit]
+Description=rdd update process
+After=network.target
+
+[Service]
+Environment="PYTHONUNBUFFERED=TRUE"
+User=root
+Group=www-data
+WorkingDirectory=/home/deploy/generic/www/
+ExecStart=/home/deploy/generic/envo/bin/python /home/deploy/generic/www/manage.py rdd update
+#--logfile="/var/log/celery/%n.log" --loglevel=INFO --time-limit=300
+Restart=always
+StandardOutput=syslog+console
+StandardError=syslog+console
+
+[Install]
+WantedBy=multi-user.target
