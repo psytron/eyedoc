@@ -2,14 +2,14 @@
 package main
 
 import (
-	"fmt"
-	"time"
 	"bytes"
 	"context"
-	"net/http"
 	"encoding/json"
+	"fmt"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/client"
+	"net/http"
+	"time"
 )
 
 func main() {
@@ -39,12 +39,14 @@ func main() {
 		}
 
 		// SEND CONTAINERS WANTING PUBLIC TRAFFIC TO ROO:
+		proxy_server_url := "http://localhost:8851/clusterupdate"
 		jsonOutbound, _ := json.Marshal( conz )
 		fmt.Println( jsonOutbound )
-		resp, err := http.Post("http://localhost:8851/clusterupdate", "application/json", bytes.NewBuffer(jsonOutbound))
+		resp, err := http.Post( proxy_server_url , "application/json", bytes.NewBuffer(jsonOutbound))
 		fmt.Println( resp ,err )
 
 		// WAIT 2 SECONDS FOR SWARM UPDATE
 		time.Sleep(2 * time.Second)
+
 	}
 }
