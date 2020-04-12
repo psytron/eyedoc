@@ -7,7 +7,7 @@ Environment="PYTHONUNBUFFERED=TRUE"
 User=root
 Group=www-data
 WorkingDirectory=./home/
-ExecStart=/home/eyedoc
+ExecStart=/usr/local/eyedoc
 Restart=always
 StandardOutput=syslog+console
 StandardError=syslog+console
