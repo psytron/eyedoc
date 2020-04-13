@@ -46,8 +46,11 @@ while True:
             pass
 
     ### POST UPDATED LIST
-    params = json.dumps( conz ).encode('utf8')
-    req = urllib.request.Request( web_proxy_address , data=params,headers={'content-type': 'application/json'})
-    response = urllib.request.urlopen(req)
-    print(' POSTED TO: ', web_proxy_address , ' : ',params ,' Received: ',response )
+    try:
+        params = json.dumps( conz ).encode('utf8')
+        req = urllib.request.Request( web_proxy_address , data=params,headers={'content-type': 'application/json'})
+        response = urllib.request.urlopen(req)
+        print(' POSTED TO: ', web_proxy_address , ' : ',params ,' Received: ',response )
+    except Exception as e:
+        print(' Web Proxy Attempt Not Responding: ',e )
     time.sleep(5)
