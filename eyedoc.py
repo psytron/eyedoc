@@ -15,6 +15,9 @@ print( 'STARTING EYEDOC with RECEIVE URL: ',web_proxy_address )
 client = docker.from_env()
 clientAPI = docker.APIClient(base_url='unix://var/run/docker.sock')
 
+
+
+
 while True:
     ### INSPECT UPDATED CONTAINERS
     conz = []
