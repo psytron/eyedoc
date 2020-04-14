@@ -13,11 +13,12 @@ for t in clientAPI.tasks( {'desired-state':'running'}):
     tsk = clientAPI.inspect_task( t['ID'] )
     try:
         detected_domain = tsk['Spec']['ContainerSpec']['Labels']['com.roo.domain']
-        print('domain found: ', detected_domain )
-        print('container IP: ', tsk['NetworksAttachments'][0]['Addresses'] )
         node = clientAPI.inspect_node( tsk['NodeID'] )
         ip = node['Status']['Addr']
+
         print('     Node IP: ', ip )
+        print('domain found: ', detected_domain )
+        print('container IP: ', tsk['NetworksAttachments'][0]['Addresses'] )
     except Exception as e:
         print(' no domain ')
 
@@ -36,6 +37,7 @@ def inspect_node_iter():
         print(' NODE: ', nodeID , ' : ',nodeIP)
         f=3
 
+inspect_node_iter()
 
 
 # PROXY ?
