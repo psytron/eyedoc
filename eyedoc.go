@@ -21,9 +21,6 @@ func Tasks() []map[string]string {
 	tasks, err := cli.TaskList(ctx, types.TaskListOptions{Filters: taskFilter})
 	fmt.Println(tasks)
 
-
-	fmt.Println("inside for ")
-	fmt.Println("inside for 2323 ")
 	/////////////////////// SCAN TASKS
 	var conz []map[string]string
 	for _, task := range tasks {
