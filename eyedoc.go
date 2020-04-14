@@ -1,11 +1,10 @@
 package eyedoc
 
 import (
-	"fmt"
 	"context"
-	"github.com/docker/docker/client"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/filters"
+	"github.com/docker/docker/client"
 	//"time"
 )
 
@@ -19,14 +18,12 @@ func Tasks() []map[string]string {
 	}
 	taskFilter := filters.NewArgs()
 	tasks, err := cli.TaskList(ctx, types.TaskListOptions{Filters: taskFilter})
-	fmt.Println(tasks)
 
 	/////////////////////// SCAN TASKS
 	var conz []map[string]string
 	for _, task := range tasks {
 		if val, ok := task.Spec.ContainerSpec.Labels["com.roo.domain"]; ok {
 			for _, ntrk := range task.NetworksAttachments {
-
 				ob := map[string]string{}
 				ob["container"] = task.ID
 				ob["com.roo.domain"] = val
@@ -35,7 +32,5 @@ func Tasks() []map[string]string {
 			}
 		}
 	}
-
-
 	return conz
 }
